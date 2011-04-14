@@ -42,7 +42,7 @@ public abstract class Action {
 	 * @param zielJSP
 	 *            Pfad der Ziel-JSP
 	 */
-	public void setZielJSP(String zielJSP) {
+	public void setDestinationJSP(String zielJSP) {
 		this.zielJSP = zielJSP;
 	}
 

@@ -3,7 +3,7 @@
 <head>
 <title>White and Clean</title>
 <%@ page pageEncoding="UTF-8" %>
-<meta http-equiv="Content-Language" content="Deutsch" />
+<meta http-equiv="Content-Language" content="German" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 </head>
@@ -19,9 +19,9 @@
 <div id="menu">
 <ul>
 <li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
 <li><a href="#">Services</a></li>
 <li><a href="#">Kundenbereich</a></li>
+<li><a href="#">About</a></li>
 </ul>
 </div>
 
@@ -30,7 +30,8 @@
 
 <h2><a href="#">Wie sicher ist mein Geld - Aktuelle Infos über unsere Sicherheit</a></h2>
 <div class="articles">
-
+Ein schöner TextEin schöner TextEin schöner TextEin schöner Text!!<br />
+Ein schöner TextEin schöner Text
 <br /><br />
 <img src="css/images/pic.jpg" alt="Example pic" style="border: 3px solid #ccc;" />
 <br /><br />
@@ -38,7 +39,9 @@
 </div>
 <h2><a href="#">Wie bekomme ich einen Kredit - Hilfe und Tips</a></h2>
 <div class="articles">
-
+Ein schöner Text
+Ein schöner Text
+Ein schöner TextEin schöner TextEin schöner TextEin schöner Text
 </div>
 </div>
 
@@ -57,11 +60,11 @@
 <h2>Login</h2>
 <ul>
 <form method="post">
-<li>Benutzername</li>
-<input type="text" name="username" size="15" />
-<li>Passwort</li>
-<input type="password" name="password" size="15" />
-<input type="submit" name="login" value="anmelden" />
+	Benutzername
+	<input type="text" name="username" size="15" />
+	Passwort
+	<input type="password" name="password" size="15" />
+	<input type="submit" name="login" value="anmelden" />
 </form>
 </ul>
 

@@ -1,10 +1,10 @@
 package actions;
 
-public class Home extends Action {
+public class Service extends Action {
 
 	@Override
 	public Object doAktion() {
-		setDestinationJSP("index.jsp");
+		setDestinationJSP("service.jsp");
 		return null;
 	}
 
