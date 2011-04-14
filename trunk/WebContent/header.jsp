@@ -18,10 +18,11 @@
 <div id="menu">
 <ul>
 <li><a href="#">Home</a></li>
-<li><a href="#">Services</a></li>
+<li><a href="?site=Service">Services</a></li>
 <li><a href="#">Kundenbereich</a></li>
 <li><a href="#">About</a></li>
 </ul>
 </div>
 
 <div id="content">
+<div class="right">

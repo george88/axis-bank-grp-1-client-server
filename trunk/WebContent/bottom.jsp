@@ -1,4 +1,4 @@
-
+</div>
 <div class="left"> 
 
 <h2>Categories :</h2>
