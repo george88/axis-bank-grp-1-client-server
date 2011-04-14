@@ -56,7 +56,7 @@ public class ActionReflector {
 		Action action = null;
 		Class<?> c = null;
 		try {
-			c = Class.forName("actiones." + actionsName);
+			c = Class.forName("actions." + actionsName);
 		} catch (ClassNotFoundException e1) {
 			try {
 				c = Class.forName("actions.Home");
