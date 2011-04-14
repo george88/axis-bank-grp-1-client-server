@@ -28,17 +28,23 @@ public class ActionReflector {
 	public static Action getAktionFromRequest(HttpServletRequest request,
 			boolean backToSource) {
 
-		int rolle = 3;
+		int role = 3;
 		String actionName = "null";
 		Object roleObj = null;
-		if (request.getSession(false) != null)
+		if (request.getSession(false) != null) {
 			roleObj = request.getSession(false).getAttribute("role");
+			try {
+				role = Integer.parseInt(roleObj.toString());
+			} catch (Exception e) {
+				role = 3;
+			}
+		}
 
 		actionName = request.getParameter("site");
 
 		Action action = getAktionFromName(actionName);
 
-		if (rolle <= action.getBerechtigung())
+		if (role <= action.getBerechtigung())
 			return action;
 		else
 			return getAktionFromName("Home");
@@ -53,25 +59,18 @@ public class ActionReflector {
 	 * @return Instanz einer Aktionsklasse
 	 */
 	public static Action getAktionFromName(String actionsName) {
+
 		Action action = null;
-		Class<?> c = null;
-		try {
-			c = Class.forName("actions." + actionsName);
-		} catch (ClassNotFoundException e1) {
-			try {
-				c = Class.forName("actions.Home");
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
 
 		try {
+			Class<?> c;
+			System.out.println("site=" + actionsName);
+			c = Class.forName("actions." + actionsName);
 			Constructor<?> con = c.getConstructor();
 			action = (Action) con.newInstance();
+			return action;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
@@ -86,6 +85,6 @@ public class ActionReflector {
 			e.printStackTrace();
 		}
 
-		return action;
+		return new Home();
 	}
 }

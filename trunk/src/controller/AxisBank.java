@@ -49,14 +49,13 @@ public class AxisBank extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		Action a = ActionReflector.getAktionFromRequest(request, false);
-
 		if (a != null) {
 			a.setRequest(request);
 			Object obj = a.doAktion();
 			a.setContentObject(obj);
 
-			request.setAttribute("content", a.getContentObject());
 			request = a.getRequest();
+			request.setAttribute("content", a.getContentObject());
 
 			if (a.getContentObject() instanceof Error) {
 				request.getRequestDispatcher("/index.jsp").forward(request,
