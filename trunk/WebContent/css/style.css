@@ -77,6 +77,10 @@ text-decoration: underline;
 padding: 10px 20px;
 }
 
+#scroll {
+overflow-y:hidden;
+}
+
 .right {
 width: 568px;
 float: right;
