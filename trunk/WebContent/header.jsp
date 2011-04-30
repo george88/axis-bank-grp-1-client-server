@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Language" content="German" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<LINK REL="SHORTCUT ICON" HREF="bilder/bank.ico">
 </head>
 <body>
 <div id="wrap">
