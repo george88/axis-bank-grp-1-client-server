@@ -1,0 +1,153 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from Filiale_Axis_Bank WSDL service -->
+
+  <service name="Filiale_Axis_BankHttpSoap11Endpoint" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://filiale.services.axisbank.de"/>
+      <parameter name="wsdlServiceElement" value="Filiale_Axis_Bank"/>
+      <parameter name="schemaQualified" value="http://filiale.services.axisbank.de,http://daos.axisbank.de/xsd"/>
+      <parameter name="wsdlServicePort" value="Filiale_Axis_BankHttpSoap11Endpoint"/>
+      <parameter name="className" value="de.axisbank.services.filiale.Filiale_Axis_BankSoap11BindingSkeleton"/>
+      <parameter name="wsdlPortType" value="Filiale_Axis_BankPortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Kreditantrag"
+        type="java:de.axisbank.daos.xsd.Kreditantrag"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Einnahmen"
+        type="java:de.axisbank.daos.xsd.Einnahmen"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Antragssteller"
+        type="java:de.axisbank.daos.xsd.Antragssteller"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>login"
+        type="java:de.axisbank.services.filiale.Login"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>isLoginResponse"
+        type="java:de.axisbank.services.filiale.IsLoginResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:DaoObject"
+        type="java:de.axisbank.daos.xsd.DaoObject"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>getAntragstellerResponse"
+        type="java:de.axisbank.daos.xsd.Antragssteller[]"
+        innerType="cmp-ns:Antragssteller" xmlns:cmp-ns="http://daos.axisbank.de/xsd"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Versicherungen"
+        type="java:de.axisbank.daos.xsd.Versicherungen"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>getAntragsteller"
+        type="java:de.axisbank.services.filiale.GetAntragsteller"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Ausgaben"
+        type="java:de.axisbank.daos.xsd.Ausgaben"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>getLiquiditaetResponse"
+        type="java:de.axisbank.services.filiale.GetLiquiditaetResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Arbeitgeber"
+        type="java:de.axisbank.daos.xsd.Arbeitgeber"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>loginResponse"
+        type="java:de.axisbank.services.filiale.LoginResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://filiale.services.axisbank.de"
+        qname="ns:>getRueckzahlungsPlanResponse"
+        type="java:de.axisbank.services.filiale.GetRueckzahlungsPlanResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Kreditverbindlichkeiten"
+        type="java:de.axisbank.daos.xsd.Kreditverbindlichkeiten"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://daos.axisbank.de/xsd"
+        qname="ns:Rueckzahlungsplan"
+        type="java:de.axisbank.daos.xsd.Rueckzahlungsplan"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
