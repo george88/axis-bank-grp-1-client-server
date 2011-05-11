@@ -5,7 +5,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Language" content="German" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<%=getServletContext().getContextPath()%>/css/style.css" media="screen" />
 <LINK REL="SHORTCUT ICON" HREF="bilder/bank.ico">
 </head>
 <body>
