@@ -70,19 +70,19 @@ public class ActionReflector {
 			action = (Action) con.newInstance();
 			return action;
 		} catch (ClassNotFoundException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (SecurityException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		return new Home();
