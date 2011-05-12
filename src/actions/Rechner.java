@@ -10,22 +10,21 @@ import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
 
+import axisKlassen.KreditWunsch;
 import axisKlassen.Tilgungsplan;
 
 public class Rechner extends Action {
 
 	@Override
 	public Object doAktion() {
-		
-		String gewrate =getRequest().getParameter("gewrate");
+
+		String gewrate = getRequest().getParameter("gewrate");
 		System.out.println(gewrate);
-		if(gewrate != null)
-		{
+		if (gewrate != null) {
 			try {
 				ServiceClient sender = getServiceClient();
-				QName opTilgungsPlan = new QName("http://web.services.axisbank.de",
-						"getTilgungsPlan");
-
+				QName opTilgungsPlan = new QName(
+						"http://web.services.axisbank.de", "getTilgungsPlan");
 
 				int nachKomma = gewrate.indexOf(".");
 				if (nachKomma != -1) {
@@ -46,18 +45,18 @@ public class Rechner extends Action {
 				System.out.println(ueberschuss);
 
 				Object[] opArgs = new Object[] { ueberschuss };
-				OMElement request = BeanUtil.getOMElement(opTilgungsPlan, opArgs,
-						null, false, null);
+				OMElement request = BeanUtil.getOMElement(opTilgungsPlan,
+						opArgs, null, false, null);
 
 				OMElement response = sender.sendReceive(request);
-				Class<?>[] returnTypes = new Class[] { Tilgungsplan.class };
+				Class<?>[] returnTypes = new Class[] { KreditWunsch[].class };
 
 				Object[] result = BeanUtil.deserialize(response, returnTypes,
 						new DefaultObjectSupplier());
 
-				Tilgungsplan tilgungsPlan = (Tilgungsplan) result[0];
-				if (tilgungsPlan != null) {
-					getRequest().setAttribute("tilgungsPlan", tilgungsPlan);
+				KreditWunsch[] kreditWuensche = (KreditWunsch[]) result[0];
+				if (kreditWuensche != null) {
+					getRequest().setAttribute("kreditWuensche", kreditWuensche);
 				}
 
 			} catch (AxisFault e) {
@@ -65,14 +64,12 @@ public class Rechner extends Action {
 
 			}
 
-			getRequest().setAttribute("ergebnis", "Nichts");
-			
 		}
-		
+
 		setDestinationJSP("rechner.jsp");
-		return null;	
+		return null;
 	}
-	
+
 	private ServiceClient getServiceClient() throws AxisFault {
 
 		ServiceClient s = new ServiceClient();
