@@ -234,7 +234,7 @@
 	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<form action="" method="post" name="rechner" id="rechner" onsubmit="">
+			<form action="AxisBank?site=Rechner" method="post" name="rechner" id="rechner" onsubmit="">
 			<input type="hidden" name="site" value="BerechnungUeberschuss"></input>
 				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
 					<tbody>
@@ -252,7 +252,8 @@
 						</tr>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-								<a style="float:right; margin:3px;" class="noevent"  onclick="document.rechner.submit();" "><img src="./img/berechnen_b.gif" alt="berechnen"></a>
+							<input type='image' src='./img/berechnen_b.gif' alt="berechnen">
+								
 							</td>
 						</tr>
 						<tr>
