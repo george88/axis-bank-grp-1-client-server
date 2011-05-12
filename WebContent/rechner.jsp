@@ -189,8 +189,8 @@
           <dt><a href="#">Ratenkredit</a></dt>
             <dd><a href="#">Konditionen</a></dd>
             <dd><a href="#">Beispielrechnung</a></dd>
-            <dd class="active"><a href="#">Rechner</a></dd>	
-			<dd><a href="rechner.html">Was kann ich mir leisten?</a></dd>
+            <dd ><a href="index.html">Rechner</a></dd>	
+			<dd class="active"><a href="#">Was kann ich mir leisten?</a></dd>
           <dt><a href="#">Autokredit</a></dt>
           <dt><a href="#">Wohnkredit</a></dt>
         </dl>                        
@@ -228,93 +228,54 @@
       <div class="main-content">
         
         <!-- Pagetitle -->
-        <h1 class="pagetitle">Individueller Ratenkreditrechner</h1>
-		<p>Mit * gekennzeichnete Felder sind Pflichtangaben und zwingend auszufüllen - alle übrigen Angaben sind freiwillig und werden zu statistischen Zwecken erhoben. Für Hinweise zum Datenschutz klicken Sie bitte hier.</p>
-
-    
-          
+        <h1 class="pagetitle">Ratenkreditrechner</h1>
+	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<table cellpadding="0" cellspacing="0" class="formbody">
-				<thead>
-					<tr>
-						<td colspan="2" style="text-align:left; background-color: #7281B1; background-image:url(/main/img/check_calc.gif);background-repeat: no-repeat; border-top: 2px solid #FFF; padding-left: 25px; padding-top: 5px;border-bottom: 2px solid #FFF; padding-bottom: 5px;">
-							<span style="text-align:left;color:#ffffff; font-size:13px; font-weight:bold;">Ihr individueller Ratenkredit</span>
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="h2">
-						<th colspan="2" style="background:#D6DDED;">Kreditwunsch</th>
-					</tr>
+			<form action="/cgi-bin/ratenkredit/ratenkredit_rechner_leisten.cgi" method="post" name="rechner" id="rechner" target="contentunten" onsubmit="return false;">
+				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
+					<tbody>
+						<tr>
+							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Wie viel Ratenkredit kann ich mir leisten?</span></td>
+						</tr>
+						<tr class="fieldset" id="mntlRate" style="background:#D6DDED">
+							<th colspan="3" >
+								<label>Monatlicher <b>Haushaltsüberschuss</b> als monatliche Rate frei verfügbar<br></label>
+							</th>
+							<th colspan="2">
+								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate" onchange="check('clearAll');" onclick="check('clear');" type="text" value="" bid="behaviourAutoId_0" tabindex="1">&nbsp;&nbsp;<b>Euro</b>
+								<div id="mntlRateError" class="error" style="visibility:hidden"></div>
+							</th>
+						</tr>
+						<tr class="fieldset">
+							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
+								<a style="float:right; margin:3px;" class="noevent" href="#" onclick="if ( check('send') ) { zinstabelle = new Array(); DibAjax.getUrlValue('/cgi-bin/ratenkredit/ratenkredit_rechner_leisten.cgi?' + formularElementeZuGetParametern ( document.forms['rechner'] ), '[ajaxvalue]' ); }"><img src="./img/berechnen_b.gif" alt="berechnen"></a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot f&uumlr Sie</span></td>
+						</tr>
+						<tr class="fieldset" style="background:#f3f5fa">
+							<tr>
+										<td style="font: 11px Arial; border-top: 0px">Kreditwunsch (EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Laufzeit (Mon. Rate)</td>
+										<td style="font: 11px Arial; border-top: 0px">Mon. Rate (EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Letzte Rate (EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Gesamtbetrag (EUR)</td>
+									</tr>
 
-					<tr class="fieldset">
-						<td colspan="2"><p>Bitte geben Sie Ihren gewünschten Auszahlungsbetrag (Kreditwunsch) und die gewüschte Laufzeit ein.</p></td>
-					</tr>
-					<tr class="fieldset inputset first-row" style="background:#f3f5fa">
-						<th ><label><strong>Kreditwunsch €</strong>*</label></th>
-						<td>
-							<input class="text" type="text" name="kwunsch" value="" onfocus="clearRateOrLaufzeit();" onchange="clearFields();clearRateOrLaufzeit();" size="8" maxlength="5" bid="behaviourAutoId_11" tabindex="1">
-							
-						</td>
-					</tr>
-					<tr class="fieldset-end inputset" style="background:#f3f5fa">
-						<th><label><strong>Gewünschte Laufzeit in Monaten*</strong></label></th>
-						<td>
-							<input class="text" type="text" name="gew_laufzeit" value="" onchange="document.forms.form1.rate.value = '';" size="8" maxlength="2" bid="behaviourAutoId_12" tabindex="2">
-							
-						</td>
-					</tr>
-					<tr style="display:none;background:#f3f5fa">
-						<th><label><strong>Gewünschte Rate €*</strong></label></th>
-						<td>
-							<input class="text" type="text" name="rate" value="" onchange="document.forms.form1.gew_laufzeit.value = '';" size="8" maxlength="7" bid="behaviourAutoId_13" tabindex="3">
-							
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan="2" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-							<input type="image" name="submit" value="true" src="./img/berechnen_b.gif" alt="berechnen" onclick="document.forms.form1.berechne.value = 'true';" bid="behaviourAutoId_14" tabindex="9">
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan="2" style="text-align:left; background-color: #7281B1; background-image:url(/main/img/check_calc.gif);background-repeat: no-repeat; border-top: 2px solid #FFF; padding-left: 25px; padding-top: 5px;border-bottom: 2px solid #FFF; padding-bottom: 5px;">
-							<span style="text-align:left;color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie</span>
-						</td>
-					</tr>
-
-					<tr class="fieldset resultset" style="display:none;background:#f3f5fa">
-						<th><label>Laufzeit in Monaten</label></th>
-						<td><input class="text" type="text" name="laufzeit" value="" readonly="readonly" size="8" bid="behaviourAutoId_15" tabindex="4"></td>
-					</tr>
-
-					<tr class="fieldset resultset" style="background:#f3f5fa">
-						<th ><label>Monatliche Rate</label></th>
-						<td>
-							<input type="text" name="mrate" id="mrate" onchange="colorFeld(this.name)" value="0,00" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_16" tabindex="5">
-							<label class="text-inputfield">Euro</label>
-						</td>
-					</tr>
-
-					<tr class="fieldset resultset" style="background:#f3f5fa">
-						<th><label>Letzte Rate</label></th>
-						<td>
-							<input type="text" name="lrate" id="lrate" onchange="colorFeld(this.name)" value="0,00" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_17" tabindex="6">
-							<label class="text-inputfield">Euro</label>
-						</td>
-					</tr>
-
-					<tr class="fieldset resultset" style="background:#f3f5fa">
-						<th><label>Gesamtbetrag</label></th>
-						<td>
-							<input type="text" name="jgesamt" id="jgesamt" onchange="colorFeld(this.name)" value="0,00" size="8" maxlength="8" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_18" tabindex="7">
-							<label class="text-inputfield">Euro</label>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+							</th>
+						</tr>
+						<tr class="fieldset">
+							<th colspan="5">
+								<select name="konditionen" id="konditionen" size="10" style="width:100%;" onclick="setFinanzierungsdaten();" bid="behaviourAutoId_29" tabindex="2"></select>
+								<br>
+							</th>
+						</tr>
+						<tr><td colspan="5"><br></td></tr>
+					</tbody>
+				</table>
+			</form>
         </div>          
         <hr class="clear-contentunit" />        
       </div>
