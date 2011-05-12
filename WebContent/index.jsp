@@ -1,12 +1,15 @@
+<% 
+/*******************************************************************************************
+*Inhalt: Diese Jsp stellt den Ratenkreditrechner 1 dar und kommuniziert mit dem Webservice
+*
+*Autor: Robert Beese
+*
+*Version: 1.2
+*
+********************************************************************************************/
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-<!--  Version: Multiflex-3 Update-7 / Layout-2             -->
-<!--  Date:    January 15, 2007                            -->
-<!--  Author:  Wolfgang                                    -->
-<!--  License: Fully open source without restrictions.     -->
-<!--           Please keep footer credits with a link to   -->
-<!--           Wolfgang (www.1-2-3-4.info). Thank you!     -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -14,12 +17,10 @@
   <meta http-equiv="expires" content="3600" />
   <meta name="revisit-after" content="2 days" />
   <meta name="robots" content="index,follow" />
-  <meta name="publisher" content="Your publisher infos here ..." />
-  <meta name="copyright" content="Your copyright infos here ..." />
-  <meta name="author" content="Design: Wolfgang (www.1-2-3-4.info) / Modified: Your Name" />
+  <meta name="publisher" content="Axis Bank" />
+  <meta name="copyright" content="Axis Bank" />
   <meta name="distribution" content="global" />
-  <meta name="description" content="Your page description here ..." />
-  <meta name="keywords" content="Your keywords, keywords, keywords, here ..." />
+  <meta name="description" content="New generation banking" />
   <link rel="stylesheet" type="text/css" media="screen,projection,print" href="./css/layout2_setup.css" />
   <link rel="stylesheet" type="text/css" media="screen,projection,print" href="./css/layout2_text.css" />
   <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
@@ -190,7 +191,7 @@
             <dd><a href="#">Konditionen</a></dd>
             <dd><a href="#">Beispielrechnung</a></dd>
             <dd class="active"><a href="#">Rechner</a></dd>	
-			<dd><a href="rechner.html">Was kann ich mir leisten?</a></dd>
+			<dd><a href="?site=Rechner">Was kann ich mir leisten?</a></dd>
           <dt><a href="#">Autokredit</a></dt>
           <dt><a href="#">Wohnkredit</a></dt>
         </dl>                        
