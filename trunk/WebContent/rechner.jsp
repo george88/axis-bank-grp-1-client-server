@@ -259,7 +259,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot f&uumlr Sie</span></td>
+							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie</span></td>
 						</tr>
 						<tr class="fieldset" style="background:#f3f5fa">
 							<tr>
@@ -301,7 +301,7 @@
 
     <div class="footer">
       <p>Copyright &copy; 2011 Axis Bank AG | All Rights Reserved</p>
-      <p class="credits">Robert Beese | Daniel Schmitz | Georg Neufeld | Ingrid Sendler </p>
+      <p class="credits">Robert Beese | Daniel Schmitz | Georg Neufeld</p>
     </div>      
   </div> 
   
