@@ -44,7 +44,7 @@
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Go to Start page"></a>
         <div class="sitename">
-          <h1><a href="index.html" title="Go to Start page">Axis Bank<span style="font-weight:normal;font-size:50%;">&nbsp;</span></a></h1>
+          <h1><a href="#" title="Go to Start page">Axis Bank<span style="font-weight:normal;font-size:50%;">&nbsp;</span></a></h1>
           <h2>new generation banking</h2>
         </div>
     
@@ -189,7 +189,7 @@
           <dt><a href="#">Ratenkredit</a></dt>
             <dd><a href="#">Konditionen</a></dd>
             <dd><a href="#">Beispielrechnung</a></dd>
-            <dd ><a href="index.html">Rechner</a></dd>	
+            <dd ><a href="?site=Home">Rechner</a></dd>	
 			<dd class="active"><a href="#">Was kann ich mir leisten?</a></dd>
           <dt><a href="#">Autokredit</a></dt>
           <dt><a href="#">Wohnkredit</a></dt>
@@ -232,7 +232,8 @@
 	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<form action="/cgi-bin/ratenkredit/ratenkredit_rechner_leisten.cgi" method="post" name="rechner" id="rechner" target="contentunten" onsubmit="return false;">
+			<form action="" method="post" name="rechner" id="rechner" onsubmit="">
+			<input type="hidden" name="site" value="BerechnungUeberschuss"></input>
 				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
 					<tbody>
 						<tr>
@@ -240,16 +241,16 @@
 						</tr>
 						<tr class="fieldset" id="mntlRate" style="background:#D6DDED">
 							<th colspan="3" >
-								<label>Monatlicher <b>Haushaltsüberschuss</b> als monatliche Rate frei verfügbar<br></label>
+								<label>Monatlicher <b>Haushalts�berschuss</b> als monatliche Rate frei verfügbar<br></label>
 							</th>
 							<th colspan="2">
-								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate" onchange="check('clearAll');" onclick="check('clear');" type="text" value="" bid="behaviourAutoId_0" tabindex="1">&nbsp;&nbsp;<b>Euro</b>
+								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate" onchange="" onclick="" type="text" value="" bid="behaviourAutoId_0" tabindex="1">&nbsp;&nbsp;<b>Euro</b>
 								<div id="mntlRateError" class="error" style="visibility:hidden"></div>
 							</th>
 						</tr>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-								<a style="float:right; margin:3px;" class="noevent" href="#" onclick="if ( check('send') ) { zinstabelle = new Array(); DibAjax.getUrlValue('/cgi-bin/ratenkredit/ratenkredit_rechner_leisten.cgi?' + formularElementeZuGetParametern ( document.forms['rechner'] ), '[ajaxvalue]' ); }"><img src="./img/berechnen_b.gif" alt="berechnen"></a>
+								<a style="float:right; margin:3px;" class="noevent" href="?site=BerechnungUeberschuss" "><img src="./img/berechnen_b.gif" alt="berechnen"></a>
 							</td>
 						</tr>
 						<tr>
@@ -268,7 +269,11 @@
 						</tr>
 						<tr class="fieldset">
 							<th colspan="5">
-								<select name="konditionen" id="konditionen" size="10" style="width:100%;" onclick="setFinanzierungsdaten();" bid="behaviourAutoId_29" tabindex="2"></select>
+								<select name="konditionen" id="konditionen" size="10" style="width:100%;" onclick="setFinanzierungsdaten();" bid="behaviourAutoId_29" tabindex="2">
+								<%
+									out.println("<option>"+request.getAttribute("ergebnis")+"</option>");								
+								%>
+								</select>
 								<br>
 							</th>
 						</tr>
