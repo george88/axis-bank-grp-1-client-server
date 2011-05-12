@@ -12,7 +12,7 @@ import actions.ActionReflector;
 
 /**
  * Servlet implementation class AxisBank Sie nimmt alle Anfragen entgegen und
- * gibt sie, mit Hilfe der <code>Aktion_Definition</code>, in die entsprechende
+ * gibt sie, mit Hilfe der <code>AktionReflector</code>, in die entsprechende
  * Klasse vom Typ Aktion ab. Dort wird die Anfrage , durch das, hier
  * stattfindende, aufrufen der doAktion()-Methode, weiterverarbeitet und bei
  * Beendigung dieser, der Zielparameter augelesen und die entsprechende Ziel-jsp
