@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="axisKlassen.KreditWunsch"%>
 <%@page import="axisKlassen.Tilgungsplan"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
@@ -261,25 +263,30 @@
 						</tr>
 						<tr class="fieldset" style="background:#f3f5fa">
 							<tr>
-										<td style="font: 11px Arial; border-top: 0px">Kreditwunsch (EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Laufzeit (Mon. Rate)</td>
-										<td style="font: 11px Arial; border-top: 0px">Mon. Rate (EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Letzte Rate (EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Gesamtbetrag (EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Kreditwunsch <br />(EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Laufzeit <br />(Mon. Rate)</td>
+										<td style="font: 11px Arial; border-top: 0px">Mon. Rate <br />(EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Letzte Rate <br />(EUR)</td>
+										<td style="font: 11px Arial; border-top: 0px">Gesamtbetrag <br />(EUR)</td>
 									</tr>
 
 							</th>
 						</tr>
-						<tr class="fieldset">
-							<th colspan="5">
-								<select name="konditionen" id="konditionen" size="10" style="width:100%;" onclick="setFinanzierungsdaten();" bid="behaviourAutoId_29" tabindex="2">
+						<tr class="fieldset" >
 								<%
-									Tilgungsplan tp=(Tilgungsplan)request.getAttribute("tilgungsPlan");
-									out.println("<option>"+request.getAttribute("ergebnis")+"</option>");								
+								DecimalFormat df=new DecimalFormat("#,####0.00");
+								KreditWunsch[] kws=(KreditWunsch[])request.getAttribute("kreditWuensche");
+								if(kws!=null && kws.length>0)
+								for(KreditWunsch kw:kws){
+									out.println("<tr><td>"+df.format(kw.getKreditHoehe())+"</td>");								
+									out.println("<td>"+kw.getLaufzeit()+"</td>");								
+									out.println("<td>"+df.format(kw.getMonRate())+"</td>");								
+									out.println("<td>"+df.format(kw.getLetzteRate())+"</td>");								
+									out.println("<td>"+df.format(kw.getGesamtBetrag())+"</td></tr>");	
+								}							
 								%>
-								</select>
+								
 								<br>
-							</th>
 						</tr>
 						<tr><td colspan="5"><br></td></tr>
 					</tbody>
