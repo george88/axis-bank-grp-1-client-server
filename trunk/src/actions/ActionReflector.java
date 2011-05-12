@@ -41,6 +41,9 @@ public class ActionReflector {
 		}
 
 		actionName = request.getParameter("site");
+		if (actionName == null) {
+			return null;
+		}
 
 		Action action = getAktionFromName(actionName);
 
