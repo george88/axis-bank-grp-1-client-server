@@ -274,7 +274,7 @@
 						</tr>
 						<tr class="fieldset" >
 								<%
-								DecimalFormat df=new DecimalFormat("#,####0.00");
+								DecimalFormat df=new DecimalFormat("##,##0.00");
 								KreditWunsch[] kws=(KreditWunsch[])request.getAttribute("kreditWuensche");
 								if(kws!=null && kws.length>0)
 								for(KreditWunsch kw:kws){
