@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@page import="axisKlassen.Tilgungsplan"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <!--  Version: Multiflex-3 Update-7 / Layout-2             -->
@@ -9,6 +10,7 @@
 <!--           Wolfgang (www.1-2-3-4.info). Thank you!     -->
 
 <head>
+<%@ page pageEncoding="UTF-8" %>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="expires" content="3600" />
@@ -78,7 +80,7 @@
               <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                   <li><a href="#">Ihre Vorteile</a></li>
-                  <li><a href="#">Über uns</a></li>
+                  <li><a href="#">Ãber uns</a></li>
                   <li><a href="#">Unsere Verantwortung</a></li>                                  
                 </ul>
               <!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -241,16 +243,16 @@
 						</tr>
 						<tr class="fieldset" id="mntlRate" style="background:#D6DDED">
 							<th colspan="3" >
-								<label>Monatlicher <b>Haushalts�berschuss</b> als monatliche Rate frei verfügbar<br></label>
+								<label>Monatlicher <b>Haushaltsüberschuss</b> als monatliche Rate frei verfügbar<br></label>
 							</th>
 							<th colspan="2">
-								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate" onchange="" onclick="" type="text" value="" bid="behaviourAutoId_0" tabindex="1">&nbsp;&nbsp;<b>Euro</b>
+								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate"  type="text" value=""  tabindex="1">&nbsp;&nbsp;<b>Euro</b>
 								<div id="mntlRateError" class="error" style="visibility:hidden"></div>
 							</th>
 						</tr>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-								<a style="float:right; margin:3px;" class="noevent" href="?site=BerechnungUeberschuss" "><img src="./img/berechnen_b.gif" alt="berechnen"></a>
+								<a style="float:right; margin:3px;" class="noevent"  onclick="document.rechner.submit();" "><img src="./img/berechnen_b.gif" alt="berechnen"></a>
 							</td>
 						</tr>
 						<tr>
@@ -271,6 +273,7 @@
 							<th colspan="5">
 								<select name="konditionen" id="konditionen" size="10" style="width:100%;" onclick="setFinanzierungsdaten();" bid="behaviourAutoId_29" tabindex="2">
 								<%
+									Tilgungsplan tp=(Tilgungsplan)request.getAttribute("tilgungsPlan");
 									out.println("<option>"+request.getAttribute("ergebnis")+"</option>");								
 								%>
 								</select>
