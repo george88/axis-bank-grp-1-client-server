@@ -233,7 +233,7 @@
         
         <!-- Pagetitle -->
         <h1 class="pagetitle">Individueller Ratenkreditrechner</h1>
-		<p>Mit * gekennzeichnete Felder sind Pflichtangaben und zwingend auszufüllen - alle übrigen Angaben sind freiwillig und werden zu statistischen Zwecken erhoben. FÃ¼r Hinweise zum Datenschutz klicken Sie bitte hier.</p>
+		<p>Mit * gekennzeichnete Felder sind Pflichtangaben und zwingend auszufüllen.</p>
 
     
           
@@ -286,7 +286,15 @@
 								<input class="text" type="text" id="gew_laufzeit" name="gew_laufzeit" value="<%=laufz != 0?laufz:"" %>" size="8" maxlength="2" tabindex="2">
 								
 							</td>
-						</tr>	
+						</tr>
+						<%
+						String fehler = (String)request.getAttribute("fehler");
+						
+						if(fehler!=null)
+						{
+							out.println("<tr><td colspan=\"2\">"+fehler+"</tr>");
+						}
+						%>	
 						<tr>
 							<td colspan="2" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
 								<input type='image' src='./img/berechnen_b.gif' alt="berechnen">

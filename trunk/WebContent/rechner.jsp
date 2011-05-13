@@ -249,9 +249,18 @@
 							</th>
 							<th colspan="2">
 								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate"  type="text" value=""  tabindex="1">&nbsp;&nbsp;<b>Euro</b>
-								<div id="mntlRateError" class="error" style="visibility:hidden"></div>
+
 							</th>
 						</tr>
+						
+						<%
+						String fehler = (String)request.getAttribute("fehler");
+						
+						if(fehler!=null)
+						{
+							out.println("<tr><td colspan=\"5\" >"+fehler+"</td></tr>");
+						}
+						%>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
 							<input type='image' src='./img/berechnen_b.gif' alt="berechnen">
