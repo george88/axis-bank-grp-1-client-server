@@ -1,7 +1,5 @@
 package controller;
 
-
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -21,7 +19,7 @@ import actions.ActionReflector;
  * aufgerufen. Dazu prüft sie, in Threads ausgelagert, den aktuellen Stand der
  * Medien und lädt diese, bei Bedarf, aus der Datenbank neu ein.
  * 
- * @version 07.12.2010
+ * @version 18.05.2011
  * @author Georg Neufeld
  */
 public class AxisBank extends HttpServlet {
@@ -49,8 +47,7 @@ public class AxisBank extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Action a = ActionReflector.getAktionFromRequest(request, false);
+		Action a = actions.ActionReflector.getAktionFromRequest(request, false);
 		if (a != null) {
 			a.setRequest(request);
 			Object obj = a.doAktion();
@@ -64,6 +61,9 @@ public class AxisBank extends HttpServlet {
 						response);
 			} else if (a.getZielJSP() != null) {
 				request.getRequestDispatcher(a.getZielJSP()).forward(request,
+						response);
+			} else {
+				request.getRequestDispatcher("/index.jsp").forward(request,
 						response);
 			}
 		} else {
