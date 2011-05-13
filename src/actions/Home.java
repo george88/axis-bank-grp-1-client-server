@@ -81,8 +81,13 @@ public class Home extends Action {
 					new DefaultObjectSupplier());
 
 			KreditWunsch kreditWunschObjekt = (KreditWunsch) result[0];
+			
 			if (kreditWunschObjekt != null) {
 				getRequest().setAttribute("kreditWuensche", kreditWunschObjekt);
+			}
+			else
+			{
+				getRequest().setAttribute("fehler","Bitte überprüfen Sie Ihre Eingaben.<br>Kredit: 5.000 - 50.000 Euro <br> Laufzeit: 12 - 84 Monate");
 			}
 
 		} catch (AxisFault e) {

@@ -53,6 +53,7 @@ public class Rechner extends Action {
 				ueberschuss = Integer.parseInt(gewRate);
 			} catch (Exception e) {
 				ueberschuss = 0;
+				getRequest().setAttribute("fehler","Bitte überprüfen Sie Ihre Eingaben.<br>Rate: 75 - 4.100 Euro");
 			}
 			System.out.println(ueberschuss);
 
@@ -70,6 +71,7 @@ public class Rechner extends Action {
 			if (kreditWuensche != null) {
 				getRequest().setAttribute("kreditWuensche", kreditWuensche);
 			}
+		
 
 		} catch (AxisFault e) {
 			e.printStackTrace();
