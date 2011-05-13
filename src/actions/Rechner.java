@@ -24,7 +24,7 @@ public class Rechner extends Action {
 			try {
 				ServiceClient sender = getServiceClient();
 				QName opTilgungsPlan = new QName(
-						"http://web.services.axisbank.de", "getTilgungsPlan");
+						"http://web.services.axisbank.de", "getTilgungsPlanDurchRate");
 
 				int nachKomma = gewrate.indexOf(".");
 				if (nachKomma != -1) {
