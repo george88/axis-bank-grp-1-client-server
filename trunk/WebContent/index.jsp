@@ -1,3 +1,5 @@
+<%@page import="axisKlassen.KreditWunsch"%>
+<%@page import="java.text.DecimalFormat"%>
 <% 
 /*******************************************************************************************
 *Inhalt: Diese Jsp stellt den Ratenkreditrechner 1 dar und kommuniziert mit dem Webservice
@@ -12,6 +14,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de">
 
 <head>
+<%@ page pageEncoding="UTF-8" %>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="expires" content="3600" />
@@ -79,7 +82,7 @@
               <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                   <li><a href="#">Ihre Vorteile</a></li>
-                  <li><a href="#">Über uns</a></li>
+                  <li><a href="#">Ãber uns</a></li>
                   <li><a href="#">Unsere Verantwortung</a></li>                                  
                 </ul>
               <!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -230,7 +233,7 @@
         
         <!-- Pagetitle -->
         <h1 class="pagetitle">Individueller Ratenkreditrechner</h1>
-		<p>Mit * gekennzeichnete Felder sind Pflichtangaben und zwingend auszufüllen - alle übrigen Angaben sind freiwillig und werden zu statistischen Zwecken erhoben. Für Hinweise zum Datenschutz klicken Sie bitte hier.</p>
+		<p>Mit * gekennzeichnete Felder sind Pflichtangaben und zwingend auszufüllen - alle übrigen Angaben sind freiwillig und werden zu statistischen Zwecken erhoben. FÃ¼r Hinweise zum Datenschutz klicken Sie bitte hier.</p>
 
     
           
@@ -248,53 +251,64 @@
 					<tr class="h2">
 						<th colspan="2" style="background:#D6DDED;">Kreditwunsch</th>
 					</tr>
-
+				<%
+								DecimalFormat df=new DecimalFormat("##,##0.00");
+								KreditWunsch kw=(KreditWunsch)request.getAttribute("kreditWuensche");
+								int laufz=0;
+								double mrate=0;
+								double lrate=0;
+								double gesamt = 0;
+								int kreditHoehe = 0;
+								
+								if(kw!=null)
+								{
+									laufz=kw.getLaufzeit();
+									mrate=kw.getMonRate();
+									lrate=kw.getLetzteRate();
+									gesamt=kw.getGesamtBetrag();
+									kreditHoehe = (int)kw.getKreditHoehe();
+								}
+								%>
 					<tr class="fieldset">
 						<td colspan="2"><p>Bitte geben Sie Ihren gewünschten Auszahlungsbetrag (Kreditwunsch) und die gewüschte Laufzeit ein.</p></td>
 					</tr>
-					<tr class="fieldset inputset first-row" style="background:#f3f5fa">
-						<th ><label><strong>Kreditwunsch €</strong>*</label></th>
-						<td>
-							<input class="text" type="text" name="kwunsch" value="" onfocus="clearRateOrLaufzeit();" onchange="clearFields();clearRateOrLaufzeit();" size="8" maxlength="5" bid="behaviourAutoId_11" tabindex="1">
-							
-						</td>
-					</tr>
-					<tr class="fieldset-end inputset" style="background:#f3f5fa">
-						<th><label><strong>Gewünschte Laufzeit in Monaten*</strong></label></th>
-						<td>
-							<input class="text" type="text" name="gew_laufzeit" value="" onchange="document.forms.form1.rate.value = '';" size="8" maxlength="2" bid="behaviourAutoId_12" tabindex="2">
-							
-						</td>
-					</tr>
-					<tr style="display:none;background:#f3f5fa">
-						<th><label><strong>Gewünschte Rate €*</strong></label></th>
-						<td>
-							<input class="text" type="text" name="rate" value="" onchange="document.forms.form1.gew_laufzeit.value = '';" size="8" maxlength="7" bid="behaviourAutoId_13" tabindex="3">
-							
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan="2" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-							<input type="image" name="submit" value="true" src="./img/berechnen_b.gif" alt="berechnen" onclick="document.forms.form1.berechne.value = 'true';" bid="behaviourAutoId_14" tabindex="9">
-						</td>
-					</tr>
+					<form action="AxisBank?site=Home" method="post" name="rechner" id="rechner" onsubmit="">
+						<tr class="fieldset inputset first-row" style="background:#f3f5fa">
+							<th ><label><strong>Kreditwunsch in Euro</strong>*</label></th>
+							<td>
+								<input class="text" type="text" name="kwunsch" value="<%=kreditHoehe != 0?kreditHoehe:"" %>"  size="8" maxlength="5" bid="behaviourAutoId_11" tabindex="1">
+								
+							</td>
+						</tr>
+						<tr class="fieldset-end inputset" style="background:#f3f5fa">
+							<th><label><strong>Gewünschte Laufzeit in Monaten*</strong></label></th>
+							<td>
+								<input class="text" type="text" id="gew_laufzeit" name="gew_laufzeit" value="<%=laufz != 0?laufz:"" %>" size="8" maxlength="2" tabindex="2">
+								
+							</td>
+						</tr>	
+						<tr>
+							<td colspan="2" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
+								<input type='image' src='./img/berechnen_b.gif' alt="berechnen">
+							</td>
+						</tr>
+					</form>
 
 					<tr>
 						<td colspan="2" style="text-align:left; background-color: #7281B1; background-image:url(/main/img/check_calc.gif);background-repeat: no-repeat; border-top: 2px solid #FFF; padding-left: 25px; padding-top: 5px;border-bottom: 2px solid #FFF; padding-bottom: 5px;">
 							<span style="text-align:left;color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie</span>
 						</td>
 					</tr>
-
+	
 					<tr class="fieldset resultset" style="display:none;background:#f3f5fa">
 						<th><label>Laufzeit in Monaten</label></th>
-						<td><input class="text" type="text" name="laufzeit" value="" readonly="readonly" size="8" bid="behaviourAutoId_15" tabindex="4"></td>
+						<td><input class="text" type="text" name="laufzeit" value="<%=df.format(laufz)%>" readonly="readonly" size="8" bid="behaviourAutoId_15" tabindex="4"></td>
 					</tr>
 
 					<tr class="fieldset resultset" style="background:#f3f5fa">
 						<th ><label>Monatliche Rate</label></th>
 						<td>
-							<input type="text" name="mrate" id="mrate" onchange="colorFeld(this.name)" value="0,00" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_16" tabindex="5">
+							<input type="text" name="mrate" id="mrate" onchange="colorFeld(this.name)" value="<%=df.format(mrate)%>" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_16" tabindex="5">
 							<label class="text-inputfield">Euro</label>
 						</td>
 					</tr>
@@ -302,7 +316,7 @@
 					<tr class="fieldset resultset" style="background:#f3f5fa">
 						<th><label>Letzte Rate</label></th>
 						<td>
-							<input type="text" name="lrate" id="lrate" onchange="colorFeld(this.name)" value="0,00" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_17" tabindex="6">
+							<input type="text" name="lrate" id="lrate" onchange="colorFeld(this.name)" value="<%=df.format(lrate)%>" size="7" maxlength="7" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_17" tabindex="6">
 							<label class="text-inputfield">Euro</label>
 						</td>
 					</tr>
@@ -310,7 +324,7 @@
 					<tr class="fieldset resultset" style="background:#f3f5fa">
 						<th><label>Gesamtbetrag</label></th>
 						<td>
-							<input type="text" name="jgesamt" id="jgesamt" onchange="colorFeld(this.name)" value="0,00" size="8" maxlength="8" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_18" tabindex="7">
+							<input type="text" name="jgesamt" id="jgesamt" onchange="colorFeld(this.name)" value="<%=df.format(gesamt) %>" size="8" maxlength="8" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_18" tabindex="7">
 							<label class="text-inputfield">Euro</label>
 						</td>
 					</tr>
@@ -325,7 +339,7 @@
 
     <div class="footer">
       <p>Copyright &copy; 2011 Axis Bank AG | All Rights Reserved</p>
-      <p class="credits">Robert Beese | Daniel Schmitz | Georg Neufeld | Ingrid Sendler </p>
+      <p class="credits">Robert Beese | Daniel Schmitz | Georg Neufeld</p>
     </div>      
   </div> 
   
