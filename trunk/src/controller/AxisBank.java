@@ -24,8 +24,6 @@ import actions.ActionReflector;
  */
 public class AxisBank extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
