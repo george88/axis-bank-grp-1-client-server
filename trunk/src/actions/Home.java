@@ -21,14 +21,14 @@ public class Home extends Action {
 		
 		if(getKreditWunsch != null && getLaufZeit != null)
 		{
-			berechnungMitKredidLaufzeit(getKreditWunsch, getLaufZeit);			
+			berechnungDurchKreditLaufzeit(getKreditWunsch, getLaufZeit);			
 		}
 		
 		setDestinationJSP("index.jsp");
 		return null;
 	}
 	
-	private void berechnungMitKredidLaufzeit(String getKreditWunsch,String getLaufZeit)
+	private void berechnungDurchKreditLaufzeit(String getKreditWunsch,String getLaufZeit)
 	{
 		try {
 			double kreditWunsch =0;
