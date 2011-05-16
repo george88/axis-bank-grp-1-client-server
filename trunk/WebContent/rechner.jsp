@@ -1,7 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="axisKlassen.KreditWunsch"%>
-<%@page import="axisKlassen.Tilgungsplan"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <!--  Version: Multiflex-3 Update-7 / Layout-2             -->
