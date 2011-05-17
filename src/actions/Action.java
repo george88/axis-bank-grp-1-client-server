@@ -2,6 +2,8 @@ package actions;
 
 import javax.servlet.http.HttpServletRequest;
 
+import de.axisbank.services.web.WebAxisBankSkeleton;
+
 /**
  * Die abstrakt Klasse <code>Aktion</code> definiert das Konstrukt einer jeden
  * Aktionsklasse. Ausserdem verlangt sie die Implementierung der
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version 07.12.2010
  * @author Georg Neufeld
  */
-public abstract class Action {
+public abstract class Action extends WebAxisBankSkeleton {
 
 	private String name;
 	private String zielJSP;
