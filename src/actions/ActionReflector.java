@@ -50,7 +50,7 @@ public class ActionReflector {
 		if (role <= action.getBerechtigung())
 			return action;
 		else
-			return getAktionFromName("Home");
+			return getAktionFromName("Rechner1");
 	}
 
 	/**
@@ -88,6 +88,6 @@ public class ActionReflector {
 			e.printStackTrace();
 		}
 
-		return new Home();
+		return new Rechner1();
 	}
 }
