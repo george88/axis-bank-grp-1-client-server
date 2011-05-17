@@ -13,7 +13,7 @@ import org.apache.axis2.engine.DefaultObjectSupplier;
 import axisKlassen.KreditWunsch;
 
 
-public class Rechner extends Action {
+public class Rechner2 extends Action {
 
 	/******************************Public Methoden************************************/
 	@Override
@@ -22,7 +22,7 @@ public class Rechner extends Action {
 		String gewRate = getRequest().getParameter("gewrate");
 
 		if (gewRate != null) {
-			berechnungMitRate(gewRate);
+			berechnungDurchRate(gewRate);
 		}
 
 		setDestinationJSP("rechner.jsp");
@@ -31,7 +31,7 @@ public class Rechner extends Action {
 	
 	/*************************Private Methoden*****************************************/
 	
-	private void berechnungMitRate(String gewRate)
+	private void berechnungDurchRate(String gewRate)
 	{
 		try {
 			ServiceClient sender = getServiceClient();
