@@ -192,8 +192,8 @@
           <dt><a href="#">Ratenkredit</a></dt>
             <dd><a href="#">Konditionen</a></dd>
             <dd><a href="#">Beispielrechnung</a></dd>
-            <dd ><a href="?site=Home">Rechner</a></dd>	
-			<dd class="active"><a href="#">Was kann ich mir leisten?</a></dd>
+            <dd ><a href="?site=Rechner1">Rechner</a></dd>	
+			<dd class="active"><a href="?site=Rechner2">Was kann ich mir leisten?</a></dd>
           <dt><a href="#">Autokredit</a></dt>
           <dt><a href="#">Wohnkredit</a></dt>
         </dl>                        
@@ -235,7 +235,7 @@
 	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<form action="AxisBank?site=Rechner" method="post" name="rechner" id="rechner" onsubmit="">
+			<form action="AxisBank?site=Rechner2" method="post" name="rechner" id="rechner" onsubmit="">
 			<input type="hidden" name="site" value="BerechnungUeberschuss"></input>
 				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
 					<tbody>
