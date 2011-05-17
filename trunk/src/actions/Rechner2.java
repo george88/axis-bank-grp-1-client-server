@@ -4,21 +4,22 @@ import javax.xml.namespace.QName;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axis2.AxisFault;
-import org.apache.axis2.addressing.EndpointReference;
-import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
 
 import axisKlassen.KreditWunsch;
-
+import axisKlassen.WebService;
 
 public class Rechner2 extends Action {
 
-	/******************************Public Methoden************************************/
+	/*
+	 * *****************************Public
+	 * Methoden***********************************
+	 */
 	@Override
 	public Object doAktion() {
-		
+
 		String gewRate = getRequest().getParameter("gewrate");
 
 		if (gewRate != null) {
@@ -28,15 +29,17 @@ public class Rechner2 extends Action {
 		setDestinationJSP("rechner.jsp");
 		return null;
 	}
-	
-	/*************************Private Methoden*****************************************/
-	
-	private void berechnungDurchRate(String gewRate)
-	{
+
+	/*
+	 * ************************Private
+	 * Methoden****************************************
+	 */
+	private void berechnungDurchRate(String gewRate) {
 		try {
-			ServiceClient sender = getServiceClient();
-			QName opTilgungsPlan = new QName(
-					"http://web.services.axisbank.de", "getTilgungsPlanDurchRate");
+			ServiceClient sender = WebService.getServiceClient();
+			QName getTilgungsPlanDurchRate = new QName(
+					"http://web.services.axisbank.de",
+					"getTilgungsPlanDurchRate");
 
 			int nachKomma = gewRate.indexOf(".");
 			if (nachKomma != -1) {
@@ -53,12 +56,14 @@ public class Rechner2 extends Action {
 				ueberschuss = Integer.parseInt(gewRate);
 			} catch (Exception e) {
 				ueberschuss = 0;
-				getRequest().setAttribute("fehler","Bitte überprüfen Sie Ihre Eingaben.<br>Rate: 75 - 4.100 Euro");
+				getRequest()
+						.setAttribute("fehler",
+								"Bitte überprüfen Sie Ihre Eingaben.<br>Rate: 75 - 4.100 Euro");
 			}
 			System.out.println(ueberschuss);
 
 			Object[] opArgs = new Object[] { ueberschuss };
-			OMElement request = BeanUtil.getOMElement(opTilgungsPlan,
+			OMElement request = BeanUtil.getOMElement(getTilgungsPlanDurchRate,
 					opArgs, null, false, null);
 
 			OMElement response = sender.sendReceive(request);
@@ -71,23 +76,10 @@ public class Rechner2 extends Action {
 			if (kreditWuensche != null) {
 				getRequest().setAttribute("kreditWuensche", kreditWuensche);
 			}
-		
 
 		} catch (AxisFault e) {
 			e.printStackTrace();
 
 		}
 	}
-
-	private ServiceClient getServiceClient() throws AxisFault {
-
-		ServiceClient s = new ServiceClient();
-		Options options = s.getOptions();
-		EndpointReference targetEPR = new EndpointReference(
-				"http://localhost:9080/axis2/services/WebAxisBank");
-		options.setTo(targetEPR);
-
-		return s;
-	}
-
 }
