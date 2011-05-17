@@ -193,8 +193,8 @@
           <dt><a href="#">Ratenkredit</a></dt>
             <dd><a href="#">Konditionen</a></dd>
             <dd><a href="#">Beispielrechnung</a></dd>
-            <dd class="active"><a href="#">Rechner</a></dd>	
-			<dd><a href="?site=Rechner">Was kann ich mir leisten?</a></dd>
+            <dd class="active"><a href="?site=Rechner1">Rechner</a></dd>	
+			<dd><a href="?site=Rechner2">Was kann ich mir leisten?</a></dd>
           <dt><a href="#">Autokredit</a></dt>
           <dt><a href="#">Wohnkredit</a></dt>
         </dl>                        
@@ -272,7 +272,7 @@
 					<tr class="fieldset">
 						<td colspan="2"><p>Bitte geben Sie Ihren gewünschten Auszahlungsbetrag (Kreditwunsch) und die gewüschte Laufzeit ein.</p></td>
 					</tr>
-					<form action="AxisBank?site=Home" method="post" name="rechner" id="rechner" onsubmit="">
+					<form action="AxisBank?site=Rechner1" method="post" name="rechner" id="rechner" onsubmit="">
 						<tr class="fieldset inputset first-row" style="background:#f3f5fa">
 							<th ><label><strong>Kreditwunsch in Euro</strong>*</label></th>
 							<td>
