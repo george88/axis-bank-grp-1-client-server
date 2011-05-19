@@ -55,17 +55,17 @@ public class AxisBank extends HttpServlet {
 			request.setAttribute("content", a.getContentObject());
 
 			if (a.getContentObject() instanceof Error) {
-				request.getRequestDispatcher("/index.jsp").forward(request,
+				request.getRequestDispatcher("/rechner1.jsp").forward(request,
 						response);
 			} else if (a.getZielJSP() != null) {
 				request.getRequestDispatcher(a.getZielJSP()).forward(request,
 						response);
 			} else {
-				request.getRequestDispatcher("/index.jsp").forward(request,
+				request.getRequestDispatcher("/rechner1.jsp").forward(request,
 						response);
 			}
 		} else {
-			request.getRequestDispatcher("/index.jsp").forward(request,
+			request.getRequestDispatcher("/rechner1.jsp").forward(request,
 					response);
 		}
 	}

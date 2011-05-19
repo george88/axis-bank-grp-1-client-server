@@ -3,13 +3,10 @@ package actions;
 import javax.xml.namespace.QName;
 
 import org.apache.axiom.om.OMElement;
-import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
-
-import axisKlassen.KreditWunsch;
-import axisKlassen.WebService;
+import axisKlassen.*;
 
 public class Rechner2 extends Action {
 
@@ -26,7 +23,7 @@ public class Rechner2 extends Action {
 			berechnungDurchRate(gewRate);
 		}
 
-		setDestinationJSP("rechner.jsp");
+		setDestinationJSP("rechner2.jsp");
 		return null;
 	}
 
@@ -77,7 +74,7 @@ public class Rechner2 extends Action {
 				getRequest().setAttribute("kreditWuensche", kreditWuensche);
 			}
 
-		} catch (AxisFault e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
