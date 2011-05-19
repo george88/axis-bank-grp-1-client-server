@@ -7,14 +7,12 @@ import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
-
-import axisKlassen.KreditWunsch;
-import axisKlassen.WebService;
+import axisKlassen.*;
 
 public class Rechner1 extends Action {
 
 	/*
-	 *  *****************************Public
+	 * *****************************Public
 	 * Methoden***********************************
 	 */
 	@Override
@@ -26,12 +24,12 @@ public class Rechner1 extends Action {
 			berechnungDurchKreditLaufzeit(getKreditWunsch, getLaufZeit);
 		}
 
-		setDestinationJSP("index.jsp");
+		setDestinationJSP("rechner1.jsp");
 		return null;
 	}
 
 	/*
-	 *  ************************Private
+	 * ************************Private
 	 * Methoden****************************************
 	 */
 	private void berechnungDurchKreditLaufzeit(String getKreditWunsch,
