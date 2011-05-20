@@ -34,9 +34,7 @@ public class Rechner2 extends Action {
 	private void berechnungDurchRate(String gewRate) {
 		try {
 			ServiceClient sender = WebService.getServiceClient();
-			QName getTilgungsPlanDurchRate = new QName(
-					"http://web.services.axisbank.de",
-					"getTilgungsPlanDurchRate");
+			QName getTilgungsPlanDurchRate = new QName("http://web.services.axisbank.de", "getTilgungsPlanDurchRate");
 
 			int nachKomma = gewRate.indexOf(".");
 			if (nachKomma != -1) {
@@ -53,21 +51,17 @@ public class Rechner2 extends Action {
 				ueberschuss = Integer.parseInt(gewRate);
 			} catch (Exception e) {
 				ueberschuss = 0;
-				getRequest()
-						.setAttribute("fehler",
-								"Bitte überprüfen Sie Ihre Eingaben.<br>Rate: 75 - 4.100 Euro");
+				getRequest().setAttribute("fehler", "Bitte überprüfen Sie Ihre Eingaben.<br>Rate: 75 - 4.100 Euro");
 			}
 			System.out.println(ueberschuss);
 
 			Object[] opArgs = new Object[] { ueberschuss };
-			OMElement request = BeanUtil.getOMElement(getTilgungsPlanDurchRate,
-					opArgs, null, false, null);
+			OMElement request = BeanUtil.getOMElement(getTilgungsPlanDurchRate, opArgs, null, false, null);
 
 			OMElement response = sender.sendReceive(request);
 			Class<?>[] returnTypes = new Class[] { KreditWunsch[].class };
 
-			Object[] result = BeanUtil.deserialize(response, returnTypes,
-					new DefaultObjectSupplier());
+			Object[] result = BeanUtil.deserialize(response, returnTypes, new DefaultObjectSupplier());
 
 			KreditWunsch[] kreditWuensche = (KreditWunsch[]) result[0];
 			if (kreditWuensche != null) {

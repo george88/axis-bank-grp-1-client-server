@@ -25,8 +25,7 @@ public class ActionReflector {
 	 *            wenn gesetzt wird zurueck zum Aufrufer gesprungen
 	 * @return Instanz einer Aktionsklasse
 	 */
-	public static Action getAktionFromRequest(HttpServletRequest request,
-			boolean backToSource) {
+	public static Action getAktionFromRequest(HttpServletRequest request, boolean backToSource) {
 
 		int role = 3;
 		String actionName = "null";
