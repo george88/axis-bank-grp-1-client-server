@@ -16,8 +16,7 @@ public class WebService {
 		}
 		if (s != null) {
 			Options options = s.getOptions();
-			EndpointReference targetEPR = new EndpointReference(
-					"http://localhost:9080/axis2/services/WebAxisBank");
+			EndpointReference targetEPR = new EndpointReference("http://localhost:9080/axis2/services/WebAxisBank");
 			options.setTo(targetEPR);
 		}
 		return s;
