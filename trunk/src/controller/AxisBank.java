@@ -33,8 +33,7 @@ public class AxisBank extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -43,8 +42,7 @@ public class AxisBank extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Action a = actions.ActionReflector.getAktionFromRequest(request, false);
 		if (a != null) {
 			a.setRequest(request);
@@ -55,18 +53,14 @@ public class AxisBank extends HttpServlet {
 			request.setAttribute("content", a.getContentObject());
 
 			if (a.getContentObject() instanceof Error) {
-				request.getRequestDispatcher("/rechner1.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
 			} else if (a.getZielJSP() != null) {
-				request.getRequestDispatcher(a.getZielJSP()).forward(request,
-						response);
+				request.getRequestDispatcher(a.getZielJSP()).forward(request, response);
 			} else {
-				request.getRequestDispatcher("/rechner1.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
 			}
 		} else {
-			request.getRequestDispatcher("/rechner1.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
 		}
 	}
 }
