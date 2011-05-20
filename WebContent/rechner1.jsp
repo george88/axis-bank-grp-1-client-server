@@ -259,6 +259,7 @@
 								double lrate=0;
 								double gesamt = 0;
 								int kreditHoehe = 0;
+								double zinssatz = 0;
 								
 								if(kw!=null)
 								{
@@ -267,6 +268,7 @@
 									lrate=kw.getLetzteRate();
 									gesamt=kw.getGesamtBetrag();
 									kreditHoehe = (int)kw.getKreditHoehe();
+									zinssatz=kw.getZinssatz();
 								}
 								%>
 					<tr class="fieldset">
@@ -330,7 +332,7 @@
 					</tr>
 
 					<tr class="fieldset resultset" style="background:#f3f5fa">
-						<th><label>Gesamtbetrag</label></th>
+						<th><label>Gesamtbetrag <% out.print(zinssatz!=0?" (eff. Jahreszins "+zinssatz+"% )":""); %></label></th>
 						<td>
 							<input type="text" name="jgesamt" id="jgesamt" onchange="colorFeld(this.name)" value="<%=df.format(gesamt) %>" size="8" maxlength="8" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_18" tabindex="7">
 							<label class="text-inputfield">Euro</label>
