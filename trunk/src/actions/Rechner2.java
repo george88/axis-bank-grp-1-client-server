@@ -6,6 +6,8 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
+
+import tools.KonfigFiles;
 import axisKlassen.*;
 
 public class Rechner2 extends Action {
@@ -34,7 +36,8 @@ public class Rechner2 extends Action {
 	private void berechnungDurchRate(String gewRate) {
 		try {
 			ServiceClient sender = WebService.getServiceClient();
-			QName getTilgungsPlanDurchRate = new QName("http://web.services.axisbank.de", "getTilgungsPlanDurchRate");
+			QName getTilgungsPlanDurchRate = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME, KonfigFiles.Konfiguration_Datei_WebService), KonfigFiles.getString(
+					KonfigFiles.WebService_Methode_TPRate, KonfigFiles.Konfiguration_Datei_WebService));
 
 			int nachKomma = gewRate.indexOf(".");
 			if (nachKomma != -1) {

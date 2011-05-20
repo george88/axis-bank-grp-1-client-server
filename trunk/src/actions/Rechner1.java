@@ -7,6 +7,8 @@ import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.databinding.utils.BeanUtil;
 import org.apache.axis2.engine.DefaultObjectSupplier;
+
+import tools.KonfigFiles;
 import axisKlassen.*;
 
 public class Rechner1 extends Action {
@@ -39,7 +41,8 @@ public class Rechner1 extends Action {
 
 			ServiceClient sender = WebService.getServiceClient();
 
-			QName opTilgungsPlan = new QName("http://web.services.axisbank.de", "getTilgungsPlanDurchBetragLaufzeit");
+			QName opTilgungsPlan = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME, KonfigFiles.Konfiguration_Datei_WebService), KonfigFiles.getString(
+					KonfigFiles.WebService_Methode_TPBetrag, KonfigFiles.Konfiguration_Datei_WebService));
 
 			int nachKomma = getKreditWunsch.indexOf(".");
 			if (nachKomma != -1) {
