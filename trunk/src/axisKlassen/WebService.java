@@ -18,7 +18,7 @@ public class WebService {
 		}
 		if (s != null) {
 			Options options = s.getOptions();
-			EndpointReference targetEPR = new EndpointReference(KonfigFiles.getString(KonfigFiles.WebService_WSDL, KonfigFiles.Konfiguration_Datei_WebService));
+			EndpointReference targetEPR = new EndpointReference(KonfigFiles.getString(KonfigFiles.WebService_WSDL));
 			options.setTo(targetEPR);
 		}
 		return s;

@@ -36,8 +36,7 @@ public class Rechner2 extends Action {
 	private void berechnungDurchRate(String gewRate) {
 		try {
 			ServiceClient sender = WebService.getServiceClient();
-			QName getTilgungsPlanDurchRate = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME, KonfigFiles.Konfiguration_Datei_WebService), KonfigFiles.getString(
-					KonfigFiles.WebService_Methode_TPRate, KonfigFiles.Konfiguration_Datei_WebService));
+			QName getTilgungsPlanDurchRate = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME), KonfigFiles.getString(KonfigFiles.WebService_Methode_TPRate));
 
 			int nachKomma = gewRate.indexOf(".");
 			if (nachKomma != -1) {
