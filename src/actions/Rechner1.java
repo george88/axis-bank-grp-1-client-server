@@ -41,8 +41,7 @@ public class Rechner1 extends Action {
 
 			ServiceClient sender = WebService.getServiceClient();
 
-			QName opTilgungsPlan = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME, KonfigFiles.Konfiguration_Datei_WebService), KonfigFiles.getString(
-					KonfigFiles.WebService_Methode_TPBetrag, KonfigFiles.Konfiguration_Datei_WebService));
+			QName opTilgungsPlan = new QName(KonfigFiles.getString(KonfigFiles.WebService_QNAME), KonfigFiles.getString(KonfigFiles.WebService_Methode_TPBetrag));
 
 			int nachKomma = getKreditWunsch.indexOf(".");
 			if (nachKomma != -1) {
