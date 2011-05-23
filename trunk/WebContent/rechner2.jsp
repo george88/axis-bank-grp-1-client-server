@@ -259,6 +259,8 @@
 						{
 							out.println("<tr><td colspan=\"5\" >"+fehler+"</td></tr>");
 						}
+						DecimalFormat df=new DecimalFormat("##,##0.00");
+						KreditWunsch[] kws=(KreditWunsch[])request.getAttribute("kreditWuensche");
 						%>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
@@ -267,7 +269,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie</span></td>
+							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie<% out.println(kws!=null&&kws.length>0?" ( eff. Jahreszins "+kws[0].getZinssatz()+"% )":""); %></span></td>
 						</tr>
 						<tr class="fieldset" style="background:#f3f5fa">
 							<tr>
@@ -282,8 +284,6 @@
 						</tr>
 						<tr class="fieldset" >
 								<%
-								DecimalFormat df=new DecimalFormat("##,##0.00");
-								KreditWunsch[] kws=(KreditWunsch[])request.getAttribute("kreditWuensche");
 								if(kws!=null && kws.length>0)
 								for(KreditWunsch kw:kws){
 									out.println("<tr><td>"+df.format(kw.getKreditHoehe())+"</td>");								
