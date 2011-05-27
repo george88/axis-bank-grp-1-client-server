@@ -17,6 +17,7 @@ public class Login extends Action {
 						if (getRequest().getParameter("passwort").equals(KonfigFiles.getString(KonfigFiles.Login_PASSWORT))) {
 							getRequest().getSession(true).setAttribute("benutzername", getRequest().getParameter("benutzername"));
 							setDestinationJSP("rechner1.jsp");
+							return null;
 						}
 					}
 				}
