@@ -1,6 +1,10 @@
 <%@page import="axisKlassen.KreditWunsch"%>
 <%@page import="java.text.DecimalFormat"%>
 <% 
+	if(request.getAttribute("rechner1.jsp")==null)
+		response.sendRedirect("AxisBank");
+%>
+<% 
 /*******************************************************************************************
 *Inhalt: Diese Jsp stellt den Ratenkreditrechner 1 dar und kommuniziert mit dem Webservice
 *
@@ -274,7 +278,8 @@
 					<tr class="fieldset">
 						<td colspan="2"><p>Bitte geben Sie Ihren gewünschten Auszahlungsbetrag (Kreditwunsch) und die gewüschte Laufzeit ein.</p></td>
 					</tr>
-					<form action="AxisBank?site=Rechner1" method="post" name="rechner" id="rechner" onsubmit="">
+					<form action="AxisBank" method="post" name="rechner" id="rechner" onsubmit="">
+						<input type="hidden" name="site" value="Rechner1"></input>
 						<tr class="fieldset inputset first-row" style="background:#f3f5fa">
 							<th ><label><strong>Kreditwunsch in Euro</strong>*</label></th>
 							<td>
