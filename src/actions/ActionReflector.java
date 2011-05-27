@@ -32,9 +32,9 @@ public class ActionReflector {
 		Action a = getAktionFromName(actionName);
 		a.setRequest(request);
 		if (!a.checkSession()) {
-			System.out.println("testset");
 			return getAktionFromName("Login");
 		}
+
 		return a;
 	}
 

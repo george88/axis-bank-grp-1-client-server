@@ -31,6 +31,11 @@
   <link rel="stylesheet" type="text/css" media="screen,projection,print" href="./css/layout2_text.css" />
   <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
   <title>Axis Bank</title>
+   <style type="text/css">
+    table { width:300px; }
+    tbody { height:10em;  overflow:scroll; overflow-x: hidden; overflow-y: auto;}
+    td { height:auto; }
+    </style>
 </head>
 
 <!-- Global IE fix to avoid layout crash when single word size wider than column width -->
@@ -118,7 +123,7 @@
               <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                   <li><a href="#">Debot</a></li>
-                  <li><a href="#">B&oumlrse</a></li>
+                  <li><a href="#">Börse</a></li>
                   <li><a href="#">Aktien</a></li>
                   <li><a href="#">Fonds</a></li>
                   <li><a href="#">Zertifikate</a></li>                                    
@@ -239,19 +244,18 @@
 	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<form action="AxisBank" method="post" name="rechner" id="rechner" onsubmit="">
-			<input type="hidden" name="site" value="Rechner2"></input>
-				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
-					<tbody>
+			<form action="AxisBank" method="post" >
+				<input type="hidden" name="site" value="Rechner2" />
+				<table id="table-header" cellpadding="0" cellspacing="0">				
 						<tr>
 							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Wie viel Ratenkredit kann ich mir leisten?</span></td>
 						</tr>
 						<tr class="fieldset" id="mntlRate" style="background:#D6DDED">
 							<th colspan="3" >
-								<label>Monatlicher <b>Haushaltsüberschuss</b> als monatliche Rate frei verfügbar<br></label>
+								<label>Monatlicher <b>Haushaltsüberschuss</b> als monatliche Rate frei verfügbar<br /></label>
 							</th>
 							<th colspan="2">
-								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate"  type="text" value=""  tabindex="1">&nbsp;&nbsp;<b>Euro</b>
+								<input style="width: 121px;" class="currency" id="gewrate" maxlength="27" name="gewrate"  type="text" value=""  tabindex="1" />&nbsp;&nbsp;<b>Euro</b>
 
 							</th>
 						</tr>
@@ -268,41 +272,38 @@
 						%>
 						<tr class="fieldset">
 							<td colspan="5" style="background:#D6DDED; font: 12px Arial, Helvetica, sans-serif; text-align: right; padding: 2px 10px 0px 0;">
-							<input type='image' src='./img/berechnen_b.gif' alt="berechnen">
+							<input type='image' src='./img/berechnen_b.gif' alt="berechnen" />
 								
 							</td>
 						</tr>
 						<tr>
 							<td colspan="5" style="background:url(/main/img/check_calc.gif) no-repeat 0px 2px; padding-left: 25px; padding-top: 5px; padding-bottom: 5px;background-color:#7281B1" align="left"><span style="color:#ffffff; font-size:13px; font-weight:bold;">Unser Angebot für Sie<% out.println(kws!=null&&kws.length>0?" ( eff. Jahreszins "+kws[0].getZinssatz()+"% )":""); %></span></td>
 						</tr>
-						<tr class="fieldset" style="background:#f3f5fa">
 							<tr>
-										<td style="font: 11px Arial; border-top: 0px">Kreditwunsch <br />(EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Laufzeit <br />(Mon. Rate)</td>
-										<td style="font: 11px Arial; border-top: 0px">Mon. Rate <br />(EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Letzte Rate <br />(EUR)</td>
-										<td style="font: 11px Arial; border-top: 0px">Gesamtbetrag <br />(EUR)</td>
-									</tr>
-
-							</th>
-						</tr>
-						<tr class="fieldset" >
-								<%
-								if(kws!=null && kws.length>0)
-								for(KreditWunsch kw:kws){
-									out.println("<tr><td>"+df.format(kw.getKreditHoehe())+"</td>");								
-									out.println("<td>"+kw.getLaufzeit()+"</td>");								
-									out.println("<td>"+df.format(kw.getMonRate())+"</td>");								
-									out.println("<td>"+df.format(kw.getLetzteRate())+"</td>");								
-									out.println("<td>"+df.format(kw.getGesamtBetrag())+"</td></tr>");	
-								}							
-								%>
-								
-								<br>
-						</tr>
-						<tr><td colspan="5"><br></td></tr>
-					</tbody>
+								<th style="font: 11px Arial; border-top: 0px">Kreditwunsch <br />(EUR)</th>
+								<th style="font: 11px Arial; border-top: 0px">Laufzeit <br />(Mon. Rate)</th>
+								<th style="font: 11px Arial; border-top: 0px">Mon. Rate <br />(EUR)</th>
+								<th style="font: 11px Arial; border-top: 0px">Letzte Rate <br />(EUR)</th>
+								<th style="font: 11px Arial; border-top: 0px">Gesamtbetrag <br />(EUR)</th>
+							</tr>
 				</table>
+						<div style="height:25em; overflow: auto;">
+							<table style="margin-top: 0em;" cellpadding="0" cellspacing="0">
+									<%
+									if(kws!=null && kws.length>0)
+									for(KreditWunsch kw:kws){
+										out.println("<tr><td>"+df.format(kw.getKreditHoehe())+"</td>");								
+										out.println("<td>"+kw.getLaufzeit()+"</td>");								
+										out.println("<td>"+df.format(kw.getMonRate())+"</td>");								
+										out.println("<td>"+df.format(kw.getLetzteRate())+"</td>");								
+										out.println("<td>"+df.format(kw.getGesamtBetrag())+"</td></tr>");	
+									}							
+									%>
+							
+							<tr><td colspan="5"><br /></td></tr>
+							</table>
+						</div>
+				
 			</form>
         </div>          
         <hr class="clear-contentunit" />        
