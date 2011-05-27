@@ -19,6 +19,12 @@ public class Rechner1 extends Action {
 	 */
 	@Override
 	public Object doAktion() {
+
+		if (!checkSession()) {
+			setDestinationJSP("login.jsp");
+			return null;
+		}
+
 		String getKreditWunsch = getRequest().getParameter("kwunsch");
 		String getLaufZeit = getRequest().getParameter("gew_laufzeit");
 
