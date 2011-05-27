@@ -1,4 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<% 
+	if(request.getAttribute("rechner2.jsp")==null)
+		response.sendRedirect("AxisBank");
+%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="axisKlassen.KreditWunsch"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -235,8 +239,8 @@
 	      
         <!-- Content unit - One column -->
         <div class="column1-unit">
-			<form action="AxisBank?site=Rechner2" method="post" name="rechner" id="rechner" onsubmit="">
-			<input type="hidden" name="site" value="BerechnungUeberschuss"></input>
+			<form action="AxisBank" method="post" name="rechner" id="rechner" onsubmit="">
+			<input type="hidden" name="site" value="Rechner2"></input>
 				<table cellpadding="0" cellspacing="0" class="formbody" border="0">
 					<tbody>
 						<tr>
