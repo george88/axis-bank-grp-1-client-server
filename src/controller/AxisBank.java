@@ -29,6 +29,11 @@ public class AxisBank extends HttpServlet {
 	 */
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2516647514935364746L;
+
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -43,23 +48,25 @@ public class AxisBank extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Action a = actions.ActionReflector.getAktionFromRequest(request, false);
+
+		if (request.getParameter("session") != null && request.getParameter("session").equals("delete") && request.getSession(false) != null) {
+			request.getSession(false).invalidate();
+		}
+
+		Action a = ActionReflector.getAktionFromRequest(request, false);
 		if (a != null) {
 			a.setRequest(request);
-			Object obj = a.doAktion();
-			a.setContentObject(obj);
-
+			a.doAktion();
 			request = a.getRequest();
-			request.setAttribute("content", a.getContentObject());
-
-			if (a.getContentObject() instanceof Error) {
-				request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
-			} else if (a.getZielJSP() != null) {
+			if (a.getZielJSP() != null) {
+				request.setAttribute(a.getZielJSP(), a.getZielJSP());
 				request.getRequestDispatcher(a.getZielJSP()).forward(request, response);
 			} else {
+				request.setAttribute("rechner1.jsp", "rechner1.jsp");
 				request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
 			}
 		} else {
+			request.setAttribute("rechner1.jsp", "rechner1.jsp");
 			request.getRequestDispatcher("/rechner1.jsp").forward(request, response);
 		}
 	}
