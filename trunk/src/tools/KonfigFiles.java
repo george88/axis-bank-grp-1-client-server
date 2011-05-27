@@ -14,6 +14,9 @@ public class KonfigFiles {
 	public static final String WebService_Methode_TPBetrag = "WebService_Methode_TPBetrag";
 	public static final String WebService_Methode_TPRate = "WebService_Methode_TPRate";
 
+	public static final String Login_USER = "Login_USER";
+	public static final String Login_PASSWORT = "Login_PASSWORT";
+
 	public static HashMap<String, String> props = new HashMap<String, String>();
 
 	public static String getString(String key) {
