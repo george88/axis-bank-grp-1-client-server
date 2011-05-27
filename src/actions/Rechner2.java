@@ -19,6 +19,11 @@ public class Rechner2 extends Action {
 	@Override
 	public Object doAktion() {
 
+		if (!checkSession()) {
+			setDestinationJSP("login.jsp");
+			return null;
+		}
+
 		String gewRate = getRequest().getParameter("gewrate");
 
 		if (gewRate != null) {

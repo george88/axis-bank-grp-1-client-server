@@ -1,8 +1,6 @@
 package actions;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -27,29 +25,17 @@ public class ActionReflector {
 	 */
 	public static Action getAktionFromRequest(HttpServletRequest request, boolean backToSource) {
 
-		int role = 3;
-		String actionName = "null";
-		Object roleObj = null;
-		if (request.getSession(false) != null) {
-			roleObj = request.getSession(false).getAttribute("role");
-			try {
-				role = Integer.parseInt(roleObj.toString());
-			} catch (Exception e) {
-				role = 3;
-			}
-		}
-
-		actionName = request.getParameter("site");
-		if (actionName == null) {
-			return null;
-		}
-
-		Action action = getAktionFromName(actionName);
-
-		if (role <= action.getBerechtigung())
-			return action;
-		else
+		String actionName = request.getParameter("site");
+		if (actionName == null)
 			return getAktionFromName("Rechner1");
+
+		Action a = getAktionFromName(actionName);
+		a.setRequest(request);
+		if (!a.checkSession()) {
+			System.out.println("testset");
+			return getAktionFromName("Login");
+		}
+		return a;
 	}
 
 	/**

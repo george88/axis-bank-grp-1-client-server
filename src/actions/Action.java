@@ -2,6 +2,8 @@ package actions;
 
 import javax.servlet.http.HttpServletRequest;
 
+import tools.KonfigFiles;
+
 /**
  * Die abstrakt Klasse <code>Aktion</code> definiert das Konstrukt einer jeden
  * Aktionsklasse. Ausserdem verlangt sie die Implementierung der
@@ -12,30 +14,27 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class Action {
 
-	private String name;
 	private String zielJSP;
-	private int berechtigung = 3;
 	private HttpServletRequest request;
-	private Object contentObject;
 
 	/**
 	 * @return ein Objekt der do Aktion()
 	 */
 	public abstract Object doAktion();
 
-	/**
-	 * @param name
-	 *            Zielklasse
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+	public boolean checkSession() {
 
-	/**
-	 * @return Aufrufklasse
-	 */
-	public String getName() {
-		return name;
+		if (getRequest() != null) {
+			if (getRequest().getSession(false) != null) {
+				if (getRequest().getSession(false).getAttribute("benutzername") != null) {
+					if (getRequest().getSession(false).getAttribute("benutzername").toString().equals(KonfigFiles.getString(KonfigFiles.Login_USER))) {
+						System.out.println("trueSession");
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -54,21 +53,6 @@ public abstract class Action {
 	}
 
 	/**
-	 * @param contentObject
-	 *            Objekt des Inhalts
-	 */
-	public void setContentObject(Object contentObject) {
-		this.contentObject = contentObject;
-	}
-
-	/**
-	 * @return Objekt des Inhalts
-	 */
-	public Object getContentObject() {
-		return contentObject;
-	}
-
-	/**
 	 * @param request
 	 *            POST-Varialen von der JSP
 	 */
@@ -81,20 +65,5 @@ public abstract class Action {
 	 */
 	public HttpServletRequest getRequest() {
 		return request;
-	}
-
-	/**
-	 * @param berechtigung
-	 *            Rolle des Nutzers
-	 */
-	public void setBerechtigung(int berechtigung) {
-		this.berechtigung = berechtigung;
-	}
-
-	/**
-	 * @return Rolle des Nutzers
-	 */
-	public int getBerechtigung() {
-		return berechtigung;
 	}
 }
