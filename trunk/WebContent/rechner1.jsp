@@ -86,7 +86,7 @@
               <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                   <li><a href="#">Ihre Vorteile</a></li>
-                  <li><a href="#">Ãber uns</a></li>
+                  <li><a href="#">Über uns</a></li>
                   <li><a href="#">Unsere Verantwortung</a></li>                                  
                 </ul>
               <!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -119,7 +119,7 @@
               <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                   <li><a href="#">Debot</a></li>
-                  <li><a href="#">B&oumlrse</a></li>
+                  <li><a href="#">Börse</a></li>
                   <li><a href="#">Aktien</a></li>
                   <li><a href="#">Fonds</a></li>
                   <li><a href="#">Zertifikate</a></li>                                    
@@ -337,7 +337,7 @@
 					</tr>
 
 					<tr class="fieldset resultset" style="background:#f3f5fa">
-						<th><label>Gesamtbetrag <% out.print(zinssatz!=0?" (eff. Jahreszins "+zinssatz+"% )":""); %></label></th>
+						<th><label>Gesamtbetrag <% out.print(zinssatz!=0?" (Zinssatz: "+zinssatz+"% )":""); %></label></th>
 						<td>
 							<input type="text" name="jgesamt" id="jgesamt" onchange="colorFeld(this.name)" value="<%=df.format(gesamt) %>" size="8" maxlength="8" readonly="readonly" class="currency" style="float:left; width: 84px;background-color:#EBEBE4 !important; border:1px solid #7F9DB9;" bid="behaviourAutoId_18" tabindex="7">
 							<label class="text-inputfield">Euro</label>
